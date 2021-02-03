@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+	<h1 align="center">Lista de &Aacuterboles</h1>
+<div class="container mt-4">
+
+	
+	<br><br>
+	<a th:href="@{new}" class="btn btn-primary">Nuevo</a>
+	<a th:onclick="eliminarSeleccionados()" class="btn btn-danger">Eliminar Selecci&oacuten</a>
+	<br><br>
+	<table class="table">
+		<thead>
+			<tr>
+				<th><input name="selecciona-todos" id="selectall" type="checkbox"></th>
+				<th>ID</th>
+				<th>NOMBRES</th>
+				<th>PRECIO</th>
+				<th>DESCRIPCI&OacuteN</th>
+				<th>ACCIONES</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="planta:${plantas}">
+				<td><input class="case" id="checkbox" type="checkbox"></td>
+				<td class="id" id="id" th:text="${planta.id}"></td>
+				<td th:text="${planta.name}"></td>
+				<td th:text="${planta.price}"></td>
+				<td th:text="${planta.description}"></td>
+				<td>
+				<a th:href="@{/editar/}+${planta.id}" class="btn btn-warning">Editar</a>
+				<a th:onclick="eliminar([[${planta.id}]])" class="btn btn-danger">Eliminar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="funciones.js"></script>
+</body>
+</html>
